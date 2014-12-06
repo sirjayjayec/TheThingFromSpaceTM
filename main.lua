@@ -11,7 +11,12 @@ function love.update(dt)
   dtotal = dtotal + dt
   if dtotal >= 0.01667 then --Run physics at 60fps
     Text = tostring(dtotal)
-    dtotal = dtotal - 0.01667 
+    Physics()
+  end
+end
+function Physics
+  while(x < 10)
+    x = x + 1
   end
 end
 function love.draw()
