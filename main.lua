@@ -16,8 +16,9 @@ function love.update(dt)
   end
 end
 function Physics()
-  while(x < 10) do
+  while(x < 1000) do
     x = x + 1
+    print(x)
   end
 end
 function love.draw()
