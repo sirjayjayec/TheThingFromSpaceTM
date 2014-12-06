@@ -7,6 +7,11 @@ function love.update(dt)
   posX = 560
   posY = 100
   Text = dt
+  dtotal = dtotal + dt
+  if dtotal >= 0.016666667 then --Run physics at 60fps
+    dtotal = dtotal - 0.016666667
+    --Run world update function
+  end
 end
 function love.draw()
 	love.graphics.print(Text, posX , posY)
