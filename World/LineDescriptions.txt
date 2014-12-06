@@ -1,0 +1,10 @@
+image location
+x
+y
+r
+collision type
+collisions size
+scale
+0
+0
+0

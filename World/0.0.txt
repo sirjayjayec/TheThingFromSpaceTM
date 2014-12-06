@@ -1,0 +1,7 @@
+images/Sprites.png
+100
+100
+0
+circle
+10
+1
