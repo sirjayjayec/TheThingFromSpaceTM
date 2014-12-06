@@ -5,6 +5,7 @@ function love.load()
 end
 dtotal = 0
 Text = 0
+x = 0
 function love.update(dt)
   posX = 560
   posY = 100
@@ -14,11 +15,11 @@ function love.update(dt)
     Physics()
   end
 end
-function Physics
-  while(x < 10)
+function Physics()
+  while(x < 10) do
     x = x + 1
   end
 end
 function love.draw()
-	love.graphics.print(Text, posX , posY)
+	love.graphics.print(x, posX , posY)
 end
