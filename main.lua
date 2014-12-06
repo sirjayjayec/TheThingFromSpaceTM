@@ -3,6 +3,7 @@ function love.load()
 	love.graphics.setColor(255,0,0)
 	love.graphics.setBackgroundColor(255,255,255)
 end
+dtotal = 0
 function love.update(dt)
   posX = 560
   posY = 100
