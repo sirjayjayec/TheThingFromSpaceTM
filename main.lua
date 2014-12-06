@@ -6,7 +6,8 @@ end
 function love.update(dt)
   posX = 560
   posY = 100
+  Text = dt
 end
 function love.draw()
-	love.graphics.print("THIS IS SOME TEXT", posX , posY)
+	love.graphics.print(Text, posX , posY)
 end
