@@ -2,8 +2,7 @@ function love.load()
   love.graphics.setNewFont(12)
 	love.graphics.setColor(255,0,0)
 	love.graphics.setBackgroundColor(255,255,255)
-  local ObjHdlr = require("ObjHandler.lua")
-  ObjHdlr.fillObjArray()
+  objHdlr = require('ObjHandler')
 end
 dtotal = 0
 Text = 0
@@ -17,5 +16,5 @@ function love.update(dt)
   end
 end
 function love.draw()
-	love.graphics.print(x, posX , posY)
+	love.graphics.print(objHdlr.rtn12(), posX , posY)
 end
