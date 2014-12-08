@@ -3,6 +3,7 @@ function love.load()
 	love.graphics.setColor(255,0,0)
 	love.graphics.setBackgroundColor(255,255,255)
   objHdlr = require('ObjHandler')
+  objHdlr.fillObjArray()
 end
 dtotal = 0
 Text = 0
@@ -16,5 +17,5 @@ function love.update(dt)
   end
 end
 function love.draw()
-	love.graphics.print(objHdlr.rtn12(), posX , posY)
+	love.graphics.print(objHdlr.RtnObjValues(0,"ColShape"), posX , posY)
 end
