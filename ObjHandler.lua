@@ -1,9 +1,11 @@
 local ObjHandler = {}
 local OH = ObjHandler
 local objInfo = {}
+local objInfoLength = 0
 function OH.fillObjArray()
   for line in love.filesystem.lines("World/0.0.txt") do
     table.insert(objInfo, line)
+    objInfoLength = objInfoLength + 1
   end
 end
 function OH.RtnObjValues(ObjID,DataType)
@@ -25,5 +27,8 @@ function DataTypetoLN(DataType)
   elseif DataType == "Scale" then
     return 7
   end
+end
+function OH.RtnObjLength()
+  return objInfoLength
 end
 return ObjHandler

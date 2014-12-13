@@ -17,5 +17,5 @@ function love.update(dt)
   end
 end
 function love.draw()
-	love.graphics.print(objHdlr.RtnObjValues(0,"ColShape"), posX , posY)
+	love.graphics.print(objHdlr.RtnObjLength()) --print the colshape of object 0
 end
