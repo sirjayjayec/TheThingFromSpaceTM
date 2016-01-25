@@ -242,9 +242,7 @@ function ObjRender()
     elseif ActiveColShape == "square" then
       love.graphics.rectangle("line",ActiveXCord,ActiveYCord,ActiveColSize,ActiveColSize)
     end
-    --if ActiveSprite =! null then 
-    --  love.graphics.draw(ActiveSprite,ActiveXCord,ActiveYCord)
-    ----renderInt=renderInt+1
+    renderInt=renderInt+1
   end
   renderInt = 0
 end
