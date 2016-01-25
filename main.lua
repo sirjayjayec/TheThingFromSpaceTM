@@ -233,7 +233,7 @@ end
 function ObjRender()
   while renderInt <= (objHdlr.RtnObjLength()/10)-1 do
     ActiveColShape = objHdlr.RtnObjValues(renderInt, "ColShape")
-    ActiveSprite = objHdlr.RtnObjValues(renderInt, "ImageFile")
+    --ActiveSprite = objHdlr.RtnObjValues(renderInt, "ImageFile")
     ActiveColSize = objHdlr.RtnObjValues(renderInt,"ColSize")*ScaleModifier
     ActiveXCord = (objHdlr.RtnObjValues(renderInt,"XCord")+XModifier)*ScaleModifier
     ActiveYCord = (objHdlr.RtnObjValues(renderInt,"YCord")+YModifier)*ScaleModifier
@@ -244,8 +244,8 @@ function ObjRender()
     end
     --if ActiveSprite =! null then 
     --  love.graphics.draw(ActiveSprite,ActiveXCord,ActiveYCord)
-    --renderInt=renderInt+1
-  end
+    --  renderInt=renderInt+1
+    --end
   renderInt = 0
 end
 function CharacterRender()
