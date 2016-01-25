@@ -2,7 +2,7 @@ image location
 x
 y
 r
-collision type
+collision Shape
 collisions size
 scale
 0
