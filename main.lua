@@ -246,6 +246,7 @@ function ObjRender()
     --  love.graphics.draw(ActiveSprite,ActiveXCord,ActiveYCord)
     --  renderInt=renderInt+1
     --end
+  end
   renderInt = 0
 end
 function CharacterRender()
