@@ -30,14 +30,18 @@ function DataTypetoLN(DataType)
     return 6
   elseif DataType == "Scale" then
     return 7
+  elseif DataType == "Frames" then
+    return 8
   end
 end
 function OH.RtnObjLength()
   return objInfoLength
 end
-function LoadObjectAnimations()
-  --get base image location from objInfo
-  --get animation length from objInfo
+function OH.LoadObjectImages(x)
+  ActiveObjectSprite = OH.RtnObjValues(x,"ImageFile")
+  ActiveObjectFrames = OH.RtnObjValues(x,"Frames")
+  return  ActiveObjectSprite
+  --animation currently not implemented simply trying to get object sprite rendering working.
   --load images in to 2d array
 end
 return ObjHandler

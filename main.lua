@@ -1,4 +1,5 @@
 function love.load()
+  if arg[#arg] == "-debug" then require("mobdebug").start() end
   love.graphics.setNewFont(12)
 	love.graphics.setColor(255,255,255)
 	love.graphics.setBackgroundColor(0,0,0)
@@ -7,8 +8,10 @@ function love.load()
   inpHdlr = require("InpHandler")
   objHdlr.fillObjArray()
   bkgHdlr.fillBkgArray()
+  loadObjectImage()
   loadImages()
 end
+ObjImages = {}
 Images = {}
 Char = {}
 dtotal = 0
@@ -58,7 +61,6 @@ function UpdateDebugInfo()
   DebugInfo = DebugInfo .. "Scale:" .. tostring(ScaleModifier) .. " | "
   DebugInfo = DebugInfo .. "Mode:" .. FuncMode .. " | "
 end
-
 function loadImages()
   Images[0] = love.graphics.newImage("images/grass.png")
   Images[1] = love.graphics.newImage("images/pathN.png")
@@ -133,11 +135,18 @@ function BkgRender()
   end
   renderIntX = 0
 end
+function loadObjectImage()
+  while x < (objHdlr.RtnObjLength()/10)-1 do
+    love.graphics.print(objHdlr.LoadObjectImages(x) .. ".png", 10, 10)
+    ObjImages[x] = love.graphics.newImage(objHdlr.LoadObjectImages(x) .. ".png" )
+    x = x + 1
+  end
+end
 function ObjRender()
   renderInt = 0
   while renderInt <= (objHdlr.RtnObjLength()/10)-1 do
     ActiveColShape = objHdlr.RtnObjValues(renderInt, "ColShape")
-    ActiveSprite = objHdlr.RtnObjValues(renderInt, "ImageFile")
+    ActiveSprite = ObjImages[renderInt]
     ActiveColSize = objHdlr.RtnObjValues(renderInt,"ColSize")*ScaleModifier
     ActiveXCord = (objHdlr.RtnObjValues(renderInt,"XCord")+XModifier)*ScaleModifier
     ActiveYCord = (objHdlr.RtnObjValues(renderInt,"YCord")+YModifier)*ScaleModifier
@@ -146,6 +155,9 @@ function ObjRender()
     elseif ActiveColShape == "square" then
       love.graphics.rectangle("line",ActiveXCord,ActiveYCord,ActiveColSize,ActiveColSize)
     end
+    --the -8*ScaleModifier is used to ofset the sprites currently this is just tempory and very janky fix this
+    --currently getting the actual image from the array isn't working debuging boggling my mind will attempt again tommorow.
+    love.graphics.draw(ObjImages[1],ActiveXCord-8*ScaleModifier,ActiveYCord-8*ScaleModifier,0,ScaleModifier,ScaleModifier)
     renderInt=renderInt+1
   end
   renderInt = 0
