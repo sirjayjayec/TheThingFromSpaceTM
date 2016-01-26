@@ -4,6 +4,7 @@ function love.load()
 	love.graphics.setBackgroundColor(0,0,0)
   objHdlr = require('ObjHandler')
   bkgHdlr = require('BkgHandler')
+  inpHdlr = require("InpHandler")
   objHdlr.fillObjArray()
   bkgHdlr.fillBkgArray()
   loadImages()
@@ -18,7 +19,6 @@ XModifier = (love.graphics.getWidth()/2)
 YModifier = (love.graphics.getHeight()/2)
 ActiveObject = 0
 totalFrames = 0
-renderInt = 0
 renderIntX = 0
 renderIntY = 0
 seconds = 0
@@ -40,58 +40,13 @@ function love.update(dt)
   posX = 560
   posY = 100
   dtotal = dtotal + dt
-  --key inputs
-  if love.keyboard.isDown("w") then
-    KeyW = 1
-  else
-    KeyW = 0
-  end
-  if love.keyboard.isDown("a") then
-    KeyA = 1
-  else
-    KeyA = 0
-  end
-  if love.keyboard.isDown("s") then
-    KeyS = 1
-  else
-    KeyS = 0
-  end
-  if love.keyboard.isDown("d") then
-    KeyD = 1
-  else
-    KeyD = 0
-  end
-  if love.keyboard.isDown("lshift") then
-    KeyLShift = 1
-  else
-    KeyLShift = 0
-  end
-  if love.keyboard.isDown("kp+") then
-    KeyIn = 1
-  else
-    KeyIn = 0
-  end
-  if love.keyboard.isDown("kp-") then
-    KeyOut = 1
-  else
-    KeyOut = 0
-  end
-  if love.keyboard.isDown("f1") then
-    KeyF1 = 1
-  else
-    KeyF1 = 0
-  end
-  if love.keyboard.isDown("f2") then
-    KeyF2 = 1
-  else
-    KeyF2 = 0
-  end
+  
 --Game runs using vSync but the frame rate is unlocked, game physics limited to 60Hz by being called from this loop
   if dtotal >= 0.01667 then 
     dtotal = 0
     totalFrames = totalFrames + 1
-    ApplyControls()
     CharAnimation()
+    inpHdlr.InputHandler() --INPUTS in InpHandler.lua
     
   end
     Text = tostring(dtotal)
@@ -103,59 +58,7 @@ function UpdateDebugInfo()
   DebugInfo = DebugInfo .. "Scale:" .. tostring(ScaleModifier) .. " | "
   DebugInfo = DebugInfo .. "Mode:" .. FuncMode .. " | "
 end
-function ApplyControls()
-  --mode changing via f1/f2 keys
-  if(KeyF1 == 1) then
-    FuncMode = "F1"
-  elseif(KeyF2 == 1)then
-    FuncMode = "F2"
-  end
-  if(FuncMode == "F1") then --editor mode
-    if(KeyLShift == 1) then
-      if(KeyW == 1)then
-        YModifier = YModifier -10
-      elseif(KeyA == 1)then
-        XModifier = XModifier -10
-      elseif(KeyS == 1)then
-        YModifier = YModifier +10
-      elseif(KeyD == 1)then
-        XModifier = XModifier +10
-      end
-    else
-      if(KeyW == 1)then
-        YModifier = YModifier -1
-      elseif(KeyA == 1)then
-        XModifier = XModifier -1
-      elseif(KeyS == 1)then
-        YModifier = YModifier +1
-      elseif(KeyD == 1)then
-        XModifier = XModifier +1
-      elseif(KeyIn == 1)then
-        ScaleModifier = ScaleModifier + 0.025
-      elseif(KeyOut == 1)then
-        ScaleModifier = ScaleModifier - 0.025
-      end
-    end
-    if(ScaleModifier < .5)then
-      ScaleModifier = .5
-    elseif(ScaleModifier > 2)then
-      ScaleModifier = 2
-    end
-  elseif(FuncMode == "F2") then --Play mode
-    if(KeyW == 1)then
-      CharY = CharY -2.5
-    end
-    if(KeyA == 1)then
-      CharX = CharX -2.5
-    end
-    if(KeyS == 1)then
-      CharY = CharY +2.5
-    end
-    if(KeyD == 1)then
-      CharX = CharX +2.5
-    end 
-  end
-end
+
 function loadImages()
   Images[0] = love.graphics.newImage("images/grass.png")
   Images[1] = love.graphics.newImage("images/pathN.png")
@@ -231,6 +134,7 @@ function BkgRender()
   renderIntX = 0
 end
 function ObjRender()
+  renderInt = 0
   while renderInt <= (objHdlr.RtnObjLength()/10)-1 do
     ActiveColShape = objHdlr.RtnObjValues(renderInt, "ColShape")
     ActiveSprite = objHdlr.RtnObjValues(renderInt, "ImageFile")
