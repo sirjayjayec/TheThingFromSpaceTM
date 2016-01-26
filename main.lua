@@ -27,7 +27,6 @@ renderIntY = 0
 seconds = 0
 FuncMode = "F1"
 DebugInfo = ""
-KeyW, KeyA, KeyS, KeyD, KeyIn, KeyOut, LShift, KeyF1, KeyF2 = 0
 CharX = 500
 CharY = 500
 
