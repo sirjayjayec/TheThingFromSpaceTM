@@ -35,4 +35,9 @@ end
 function OH.RtnObjLength()
   return objInfoLength
 end
+function LoadObjectAnimations()
+  --get base image location from objInfo
+  --get animation length from objInfo
+  --load images in to 2d array
+end
 return ObjHandler

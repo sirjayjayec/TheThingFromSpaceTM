@@ -5,6 +5,6 @@ r
 collision Shape
 collisions size
 scale
-0
+Frames
 0
 0
