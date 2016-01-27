@@ -6,10 +6,10 @@ function love.load()
   objHdlr = require('ObjHandler')
   bkgHdlr = require('BkgHandler')
   inpHdlr = require("InpHandler")
+  loadImages()
   objHdlr.fillObjArray()
   bkgHdlr.fillBkgArray()
   loadObjectImage()
-  loadImages()
 end
 ObjImages = {}
 Images = {}
@@ -61,6 +61,7 @@ function UpdateDebugInfo()
   DebugInfo = DebugInfo .. "Mode:" .. FuncMode .. " | "
 end
 function loadImages()
+  ActiveSprite = love.graphics.newImage("images/grass.png")
   Images[0] = love.graphics.newImage("images/grass.png")
   Images[1] = love.graphics.newImage("images/pathN.png")
   Images[2] = love.graphics.newImage("images/pathNE.png")
@@ -145,7 +146,7 @@ function ObjRender()
   renderInt = 0
   while renderInt <= (objHdlr.RtnObjLength()/10)-1 do
     ActiveColShape = objHdlr.RtnObjValues(renderInt, "ColShape")
-    ActiveSprite = ObjImages[renderInt]
+    ActiveSprite = ObjImages[objHdlr.RtnObjValues(renderInt, "ImageFile")]
     ActiveColSize = objHdlr.RtnObjValues(renderInt,"ColSize")*ScaleModifier
     ActiveXCord = (objHdlr.RtnObjValues(renderInt,"XCord")+XModifier)*ScaleModifier
     ActiveYCord = (objHdlr.RtnObjValues(renderInt,"YCord")+YModifier)*ScaleModifier
@@ -156,7 +157,9 @@ function ObjRender()
     end
     --the -8*ScaleModifier is used to ofset the sprites currently this is just tempory and very janky fix this
     --currently getting the actual image from the array isn't working debuging boggling my mind will attempt again tommorow.
-    love.graphics.draw(ObjImages[1],ActiveXCord-8*ScaleModifier,ActiveYCord-8*ScaleModifier,0,ScaleModifier,ScaleModifier)
+    if false then
+      love.graphics.draw(ActiveSprite,ActiveXCord-8*ScaleModifier,ActiveYCord-8*ScaleModifier,0,ScaleModifier,ScaleModifier)
+    end
     renderInt=renderInt+1
   end
   renderInt = 0
