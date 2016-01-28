@@ -1,8 +1,6 @@
 local InpHandler = {}
 local IH = InpHandler
 
-main = require("main")
-
 function IH.InputHandler()
   if(love.keyboard.isDown("f1")) then
     FuncMode = "F1"

@@ -1,16 +1,18 @@
 function love.load()
-  if arg[#arg] == "-debug" then require("mobdebug").start() end
   love.graphics.setNewFont(12)
 	love.graphics.setColor(255,255,255)
 	love.graphics.setBackgroundColor(0,0,0)
   objHdlr = require('ObjHandler')
   bkgHdlr = require('BkgHandler')
   inpHdlr = require("InpHandler")
+  imgHdlr = require("ImgHandler")
   loadImages()
+  newLoadImages()
   objHdlr.fillObjArray()
   bkgHdlr.fillBkgArray()
   loadObjectImage()
 end
+
 ObjImages = {}
 Images = {}
 Char = {}
@@ -53,6 +55,7 @@ function love.update(dt)
   end
     Text = tostring(dtotal)
 end
+
 function UpdateDebugInfo()
   DebugInfo = ""
   DebugInfo = DebugInfo .. "Frames:" .. tostring(totalFrames) .. " | "
@@ -60,6 +63,11 @@ function UpdateDebugInfo()
   DebugInfo = DebugInfo .. "Scale:" .. tostring(ScaleModifier) .. " | "
   DebugInfo = DebugInfo .. "Mode:" .. FuncMode .. " | "
 end
+
+function newLoadImages()
+  testList = imgHdlr.loadTileset("grass.png", 1)
+end
+
 function loadImages()
   ActiveSprite = love.graphics.newImage("images/grass.png")
   Images[0] = love.graphics.newImage("images/grass.png")
@@ -108,6 +116,7 @@ function loadImages()
   Char[37] = love.graphics.newImage("images/Sara/west7.png")
   Char[38] = love.graphics.newImage("images/Sara/west8.png")
 end
+
 function love.draw()
   --this is where the different parts are called to be rendered, called in order to have items show above others.
   BkgRender()
