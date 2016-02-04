@@ -7,17 +7,17 @@ function IH.loadTileset(pathToFile, amount)
   tilesetImg = love.graphics.newImage("images/tilesets/" .. pathToFile)
   tilesetImg:setFilter("nearest", "linear")
   images = {}
-  amountOfImages = 10
   y = 0
-  while y < amountOfImages do
+  while y < amount do
     x = 0
-    while x < amountOfImages do
+    while x < amount do
       x = x + 1
       img = love.graphics.newQuad(x * 32, y * 32, 32, 32, tilesetImg:getWidth(), tilesetImg:getHeight())
       table.insert(images, img)
     end
     y = y +1
   end
+  return images
 end
 
 return ImgHandler

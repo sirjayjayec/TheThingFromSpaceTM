@@ -6,8 +6,8 @@ function love.load()
   bkgHdlr = require('BkgHandler')
   inpHdlr = require("InpHandler")
   imgHdlr = require("ImgHandler")
-  loadImages()
   newLoadImages()
+  loadImages()
   objHdlr.fillObjArray()
   bkgHdlr.fillBkgArray()
   loadObjectImage()
@@ -69,7 +69,7 @@ function newLoadImages()
 end
 
 function loadImages()
-  ActiveSprite = love.graphics.newImage("images/grass.png")
+  ActiveSprite = testList[0]
   Images[0] = love.graphics.newImage("images/grass.png")
   Images[1] = love.graphics.newImage("images/pathN.png")
   Images[2] = love.graphics.newImage("images/pathNE.png")
