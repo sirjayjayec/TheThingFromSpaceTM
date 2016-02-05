@@ -5,14 +5,12 @@ function love.load()
   objHdlr = require('ObjHandler')
   bkgHdlr = require('BkgHandler')
   inpHdlr = require("InpHandler")
-  imgHdlr = require("ImgHandler")
-  newLoadImages()
   loadImages()
   objHdlr.fillObjArray()
   bkgHdlr.fillBkgArray()
   loadObjectImage()
 end
-
+Terrain = {}
 ObjImages = {}
 Images = {}
 Char = {}
@@ -63,22 +61,17 @@ function UpdateDebugInfo()
   DebugInfo = DebugInfo .. "Scale:" .. tostring(ScaleModifier) .. " | "
   DebugInfo = DebugInfo .. "Mode:" .. FuncMode .. " | "
 end
-
-function newLoadImages()
-  testList = imgHdlr.loadTileset("grass.png", 1)
-end
-
 function loadImages()
-  ActiveSprite = testList[0]
-  Images[0] = love.graphics.newImage("images/grass.png")
-  Images[1] = love.graphics.newImage("images/pathN.png")
-  Images[2] = love.graphics.newImage("images/pathNE.png")
-  Images[3] = love.graphics.newImage("images/pathE.png")
-  Images[4] = love.graphics.newImage("images/pathSE.png")
-  Images[5] = love.graphics.newImage("images/pathS.png")
-  Images[6] = love.graphics.newImage("images/pathSW.png")
-  Images[7] = love.graphics.newImage("images/pathW.png")
-  Images[8] = love.graphics.newImage("images/pathNW.png")
+  TileSet = love.graphics.newImage("images/tilesets/terrain.png")
+  Terrain[0] = love.graphics.newQuad(0,0,32,32,1024,1024)
+  Terrain[1] = love.graphics.newQuad(32,0,32,32,1024,1024)
+  Terrain[3] = love.graphics.newQuad(64,0,32,32,1024,1024)
+  Terrain[2] = love.graphics.newQuad(64,0,32,32,1024,1024)
+  Terrain[4] = love.graphics.newQuad(96,0,32,32,1024,1024)
+  Terrain[5] = love.graphics.newQuad(128,0,32,32,1024,1024)
+  Terrain[6] = love.graphics.newQuad(160,0,32,32,1024,1024)
+  Terrain[7] = love.graphics.newQuad(288,0,32,32,1024,1024)
+
   Char[00] = love.graphics.newImage("images/Sara/north0.png")
   Char[01] = love.graphics.newImage("images/Sara/north1.png")
   Char[02] = love.graphics.newImage("images/Sara/north2.png")
@@ -133,7 +126,7 @@ function BkgRender()
       ActiveYCord = (renderIntX*32+YModifier)*ScaleModifier
       ActiveColSize = 32*ScaleModifier
       if ActiveImage ~= nil then
-        love.graphics.draw(Images[ActiveImage],ActiveXCord,ActiveYCord,0,ScaleModifier,ScaleModifier)
+        love.graphics.draw(TileSet,Terrain[ActiveImage],ActiveXCord,ActiveYCord,0,ScaleModifier,ScaleModifier)
       else
         love.graphics.rectangle("line",ActiveXCord,ActiveYCord,ActiveColSize,ActiveColSize)
       end

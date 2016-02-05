@@ -3,4 +3,5 @@ function love.conf(t)
   t.window.height = 720
   t.window.title = "The Thing From Space ^ TM"        -- The window title (string)
   t.window.vsync = false
+  t.console = true
 end
